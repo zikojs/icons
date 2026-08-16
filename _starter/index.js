@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { createFolder, copyFolder , runCommand } from "./utils/commands.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const Root = path.join(__dirname,"");
+const Root = path.join(__dirname, "");
 
 parsePrompt().then(({project_title, template_path, confirm_install})=>{
     const url = path.join(Root, template_path)
