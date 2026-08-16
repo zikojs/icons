@@ -1,32 +1,34 @@
 {
-  "name": "create-ziko-app",
-  "version": "0.0.7",
+  "name": "create-ziko",
+  "version": "0.1.0",
   "description": "Easily create Ziko apps without any complicated build setup.",
   "type": "module",
   "keywords": [
-    "ziko"
+    "ziko",
+    "zikojs"
   ],
   "files": [
+    "bin",
     "starter",
     "LICENCE"
   ],
   "scripts": {},
   "bin": {
-    "create-ziko-app": "./bin/index.js"
+    "create-ziko": "./bin/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zakarialaoui10/create-ziko-app.git"
+    "url": "git+https://github.com/zakarialaoui10/create-ziko.git"
   },
   "author": "zakaria elalaoui",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zakarialaoui10/create-ziko-app/issues"
+    "url": "https://github.com/zakarialaoui10/create-ziko/issues"
   },
-  "homepage": "https://github.com/zakarialaoui10/create-ziko-app#readme",
+  "homepage": "https://github.com/zakarialaoui10/create-ziko#readme",
   "dependencies": {
-    "inquirer": "^12.2.0",
+    "inquirer": "^14.0.2",
     "picocolors": "^1.1.1",
-    "ziko": "^0.0.22"
+    "ziko": "^1.8.0"
   }
 }
