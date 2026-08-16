@@ -1,49 +1,19 @@
 import inquirer from "inquirer";
 import pc from "picocolors";
 
-const supportedLanguages = {
-  spa: ["js", "ts", "jsx", "tsx"],
-  fbr: ["js", "ts", "jsx"],
-  ssr: ["js", "ts"],
-};
-
-const languageNames = {
-  js: pc.yellowBright("JavaScript"),
-  ts: pc.blueBright("TypeScript"),
-  jsx: pc.cyanBright("JSX"),
-  tsx: pc.magentaBright("TSX"),
-};
-
-const projectTypes = [
-  {
-    name: "Single Page App",
-    value: "spa",
-  },
-  {
-    name: "Single Page App — File-based Router",
-    value: "fbr",
-  },
-  {
-    name: "Server-Side Rendering",
-    value: "ssr",
-  },
-  {
-    name: "Extra",
-    value: "extra",
-  },
-];
+import {
+  SUPPORTED_LANGUAGES,
+  LANGUES_NAMES,
+  PROJECT_TYPES
+} from './const.js'
 
 function getFlag(args, ...names) {
   const index = args.findIndex((arg) => names.includes(arg));
-
   if (index === -1) return undefined;
-
   const value = args[index + 1];
-
   if (!value || value.startsWith("-")) {
     return true;
   }
-
   return value;
 }
 
@@ -108,11 +78,11 @@ export async function getProjectConfig() {
         type: "select",
         name: "projectType",
         message: "Project type:",
-        choices: projectTypes,
+        choices: PROJECT_TYPES,
       },
     ]));
   } else {
-    const valid = projectTypes.some(
+    const valid = PROJECT_TYPES.some(
       (type) => type.value === projectType
     );
 
@@ -134,9 +104,9 @@ export async function getProjectConfig() {
   }
 
   // Language choices
-  const languageChoices = supportedLanguages[projectType].map(
+  const languageChoices = SUPPORTED_LANGUAGES[projectType].map(
     (value) => ({
-      name: languageNames[value],
+      name: LANGUES_NAMES[value],
       value,
     })
   );
@@ -153,7 +123,7 @@ export async function getProjectConfig() {
     ]));
   } else {
     const supported =
-      supportedLanguages[projectType].includes(language);
+      SUPPORTED_LANGUAGES[projectType].includes(language);
 
     if (!supported) {
       throw new Error(

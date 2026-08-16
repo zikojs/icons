@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import inquirer from "inquirer";
 import pc from "picocolors";
 import fs from "node:fs";
 import path from "node:path";
@@ -7,6 +8,13 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import { getProjectConfig } from "./prompts.js";
+import { TEMPLATES } from "./const.js";
+import { 
+  installDependencies,
+  isDirectoryEmpty,
+  copyDirectory,
+  handleExistingDirectory
+} from "./utils/index.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,28 +23,9 @@ const ROOT = path.resolve(__dirname, "..");
 const TEMPLATES_DIR = path.join(ROOT, "templates");
 const SHARED_TEMPLATE = path.join(TEMPLATES_DIR, "shared");
 
-const templates = {
-  spa: {
-    js: "spa-js",
-    ts: "spa-ts",
-    jsx: "spa-jsx",
-    tsx: "spa-tsx",
-  },
-
-  fbr: {
-    js: "fbr-js",
-    ts: "fbr-ts",
-    jsx: "fbr-jsx",
-  },
-
-  ssr: {
-    js: "ssr-js",
-    ts: "ssr-ts",
-  },
-};
 
 function resolveTemplate(projectType, language) {
-  const template = templates[projectType]?.[language];
+  const template = TEMPLATES[projectType]?.[language];
 
   if (!template) {
     throw new Error(
@@ -47,27 +36,14 @@ function resolveTemplate(projectType, language) {
   return template;
 }
 
-function copyDirectory(source, target) {
-  if (!fs.existsSync(source)) {
-    throw new Error(
-      `Template directory does not exist: ${source}`
-    );
-  }
-
-  fs.cpSync(source, target, {
-    recursive: true,
-    force: true,
-  });
-}
-
-function copyTemplates(template, targetDir) {
-  // Copy shared files first
+function copyTemplates(template, targetDir, mode) {
+  // Shared files
   copyDirectory(
     SHARED_TEMPLATE,
     targetDir
   );
 
-  // Copy selected template on top of shared files
+  // Selected template
   const templateDir = path.join(
     TEMPLATES_DIR,
     template
@@ -79,18 +55,7 @@ function copyTemplates(template, targetDir) {
   );
 }
 
-function installDependencies(targetDir) {
-  console.log(
-    `\n${pc.dim("Installing dependencies...")}\n`
-  );
-
-  execSync("npm install", {
-    cwd: targetDir,
-    stdio: "inherit",
-  });
-}
-
-function createProject(config) {
+async function createProject(config) {
   const {
     projectName,
     projectType,
@@ -103,64 +68,44 @@ function createProject(config) {
     projectName
   );
 
-  if (fs.existsSync(targetDir)) {
-    throw new Error(
-      `Directory "${projectName}" already exists.`
-    );
-  }
-
   const template = resolveTemplate(
     projectType,
     language
   );
 
-  console.log(
-    `\n${pc.dim("Creating project...")}`
+  const directoryMode = await handleExistingDirectory(targetDir);
+
+  if (directoryMode === "ignore") {
+    console.log(`\n${pc.dim("Existing files will be preserved.")}`);
+  }
+
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, {
+      recursive: true,
+    });
+  }
+
+  console.log(`\n${pc.dim("Creating project...")}`);
+  console.log(`${pc.dim("Template:")} ${pc.cyan(template)}`);
+  console.log(`${pc.dim("Location:")} ${pc.cyan(targetDir)}`);
+
+  copyTemplates(
+    template,
+    targetDir,
+    directoryMode
   );
 
-  console.log(
-    `${pc.dim("Template:")} ${pc.cyan(template)}`
-  );
-
-  console.log(
-    `${pc.dim("Location:")} ${pc.cyan(targetDir)}`
-  );
-
-  fs.mkdirSync(targetDir, {
-    recursive: true,
-  });
-
-  copyTemplates(template, targetDir);
-
-  console.log(
-    `\n${pc.green("✓")} Project created successfully!`
-  );
+  console.log(`\n${pc.green("✓")} Project created successfully!`);
 
   if (install) {
     installDependencies(targetDir);
-
-    console.log(
-      `\n${pc.green("✓")} Dependencies installed!`
-    );
+    console.log(`\n${pc.green("✓")} Dependencies installed!`);
   }
 
-  console.log(
-    `\n${pc.dim("Next steps:")}`
-  );
-
-  console.log(
-    `  ${pc.cyan(`cd ${projectName}`)}`
-  );
-
-  if (!install) {
-    console.log(
-      `  ${pc.cyan("npm install")}`
-    );
-  }
-
-  console.log(
-    `  ${pc.cyan("npm run dev")}\n`
-  );
+  console.log(`\n${pc.dim("Next steps:")}`);
+  console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
+  if(!install) console.log(`  ${pc.cyan("npm install")}`);
+  console.log(`  ${pc.cyan("npm run dev")}\n`);
 }
 
 try {
@@ -168,22 +113,20 @@ try {
 
   if (config.projectType === "extra") {
     console.log(
-      `\n${pc.yellow("Extra")} projects are not implemented yet.\n`
+      `\n${pc.yellow(
+        "Extra projects are not implemented yet."
+      )}\n`
     );
 
     process.exit(0);
   }
 
-  createProject(config);
+  await createProject(config);
 } catch (error) {
   if (error?.name === "ExitPromptError") {
     console.log(`\n${pc.dim("Cancelled.")}`);
     process.exit(0);
   }
-
-  console.error(
-    `\n${pc.red("✖")} ${error.message}\n`
-  );
-
+  console.error(`\n${pc.red("✖")} ${error.message}\n`);
   process.exit(1);
 }
