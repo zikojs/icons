@@ -1,12 +1,28 @@
-import { runCli } from "./cli.js";
+import { createScaffolder } from "scafy";
 import {
     DEFAULT_TEMPLATES,
     DEFAULT_LANGUAGE_NAMES,
     DEFAULT_PROJECT_TYPES
 } from './config.js'
 
-runCli({
+createScaffolder({
   templates : DEFAULT_TEMPLATES,
-  languageNames : DEFAULT_LANGUAGE_NAMES,
+  languages : DEFAULT_LANGUAGE_NAMES,
   projectTypes : DEFAULT_PROJECT_TYPES,
+  // LIFECYCLE HOOKS
+  hooks: {
+    async beforeCreate(config) {
+      console.log(`🚀 Preparing workspace for ${config.projectName}...`);
+    },
+
+    async afterCreate(config, { targetDir }) {
+      console.log("⚡ Initializing Git repository...");
+      try {
+        execSync("git init", { cwd: targetDir, stdio: "ignore" });
+        console.log("✓ Git repository initialized.");
+      } catch {
+        console.warn("Could not initialize Git repository.");
+      }
+    },
+  },
 })

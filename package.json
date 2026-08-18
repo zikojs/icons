@@ -1,17 +1,23 @@
 {
   "name": "create-ziko",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "description": "Easily create Ziko apps without any complicated build setup.",
   "type": "module",
   "keywords": [
     "ziko",
-    "zikojs"
+    "zikojs",
+    "cli"
   ],
   "files": [
     "bin",
     "starter",
     "LICENCE"
   ],
+  "exports": {
+    ".": {
+      "import": "./src/cli.js"
+    }
+  },
   "scripts": {},
   "bin": {
     "create-ziko": "./bin/index.js"
@@ -29,6 +35,8 @@
   "dependencies": {
     "inquirer": "^14.0.2",
     "picocolors": "^1.1.1",
+    "scaffolder-engine": "^0.0.0",
+    "scafy": "^0.2.0",
     "ziko": "^1.8.0"
   }
 }
