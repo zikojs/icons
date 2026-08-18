@@ -25,4 +25,4 @@ createScaffolder({
       }
     },
   },
-})
+}).run()
