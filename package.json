@@ -1,6 +1,6 @@
 {
   "name": "create-ziko",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Easily create Ziko apps without any complicated build setup.",
   "type": "module",
   "keywords": [
@@ -10,17 +10,18 @@
   ],
   "files": [
     "bin",
-    "starter",
+    "src",
+    "templates",
     "LICENCE"
   ],
   "exports": {
     ".": {
-      "import": "./src/cli.js"
+      "import": "./src/index.js"
     }
   },
   "scripts": {},
   "bin": {
-    "create-ziko": "./bin/index.js"
+    "create-ziko": "./src/index.js"
   },
   "repository": {
     "type": "git",
