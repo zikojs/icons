@@ -11,6 +11,7 @@ createScaffolder({
   templates : DEFAULT_TEMPLATES,
   languages : DEFAULT_LANGUAGE_NAMES,
   projectTypes : DEFAULT_PROJECT_TYPES,
+  templatesDir : '../templates',
   // LIFECYCLE HOOKS
   hooks: {
     async beforeCreate(config) {

@@ -31,7 +31,7 @@
   "dependencies": {
     "inquirer": "^14.0.2",
     "picocolors": "^1.1.1",
-    "scafy": "^0.3.0",
+    "scafy": "^0.7.0",
     "ziko": "^1.8.0"
   }
 }
