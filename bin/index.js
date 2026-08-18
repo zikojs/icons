@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+console.log(' from create-ziko/bin')
 import { createScaffolder } from "scafy";
 import {
     DEFAULT_TEMPLATES,

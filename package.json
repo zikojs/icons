@@ -1,6 +1,6 @@
 {
   "name": "create-ziko",
-  "version": "0.7.0",
+  "version": "0.9.0",
   "description": "Easily create Ziko apps without any complicated build setup.",
   "type": "module",
   "keywords": [
@@ -14,14 +14,9 @@
     "templates",
     "LICENCE"
   ],
-  "exports": {
-    ".": {
-      "import": "./src/index.js"
-    }
-  },
   "scripts": {},
   "bin": {
-    "create-ziko": "./src/index.js"
+    "create-ziko": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +31,6 @@
   "dependencies": {
     "inquirer": "^14.0.2",
     "picocolors": "^1.1.1",
-    "scaffolder-engine": "^0.0.0",
     "scafy": "^0.3.0",
     "ziko": "^1.8.0"
   }
