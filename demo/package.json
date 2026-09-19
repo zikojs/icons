@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "ziko": "catalog:",
-    "@zikojs/lucide": "workspace:*"
+    "@zikojs/lucide": "workspace:*",
+    "@zikojs/fa": "workspace:*",
+    "@zikojs/feather": "workspace:*"
   }
 }

@@ -2,8 +2,10 @@ import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { camel2hyphencase } from './utils/index.js'
-import { nestedChildren2component } from '@zikojs/icons-shared-utils'
+import {
+  camel2hyphencase,
+  nestedChildren2component
+} from '@zikojs/icons-shared-utils'
 
 const Icons = {
   ...fas,
@@ -22,14 +24,6 @@ const defaultProps = (IconName, width, height) => JSON.stringify(
   null,
   9
 ).replace(/\n\}/, '\n    }')
-
-const svgNode2children = nodes => nodes
-  .filter(node => node.type === 'tag')
-  .map(node => [
-    node.name,
-    node.attribs || {},
-    svgNode2children(node.children || [])
-  ])
 
 const createIconComponent = (
   IconName,
@@ -78,10 +72,16 @@ function generate() {
       pathData
     ] = icon.icon
 
-    const IconName = icon.iconName.replace(
+    // 1. Convert to camelCase (e.g., "360-degrees" -> "360Degrees")
+    let IconName = icon.iconName.replace(
       /(^|-)(\w)/g,
       (_, __, c) => c.toUpperCase()
     )
+
+    // 2. Prefix with '_' if it starts with a number
+    if (/^\d/.test(IconName)) {
+      IconName = `_${IconName}`
+    }
 
     const contents = Array.isArray(pathData)
       ? pathData.map(d => [
