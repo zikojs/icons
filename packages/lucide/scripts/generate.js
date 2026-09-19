@@ -1,11 +1,9 @@
 import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import * as Lucide from 'lucide'
-import { 
-  camel2hyphencase
- } from './utils/index.js'
 
 import{
-  children2component
+  children2component,
+  camel2hyphencase
 } from '@zikojs/icons-shared-utils'
 
 const defaultProps = (IconName) => JSON.stringify(

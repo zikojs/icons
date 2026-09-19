@@ -1,0 +1,57 @@
+{
+  "name": "@zikojs/fa",
+  "version": "0.1.0",
+  "description": "Feather Icons for ZikoJs",
+  "keywords": [
+    "zikojs",
+    "fa",
+    "fontawesome",
+    "icons",
+    "svg"
+  ],
+  "files": [
+    "generated-src",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./generated-src/index.js",
+    "./*": "./generated-src/icons/*.js"
+  },
+  "homepage": "https://github.com/zikojs/icons#readme",
+  "bugs": {
+    "url": "https://github.com/zikojs/icons/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/icons.git",
+    "directory": "packages/fa"
+  },
+  "license": "MIT",
+  "author": "zakaria elalaoui",
+  "type": "module",
+  "main": "./generated-src/index.js",
+  "module": "./generated-src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:icons": "node ./scripts/generate.js"
+  },
+  "dependencies": {
+    "ziko": "catalog:"
+  },
+  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
+    "@fortawesome/free-regular-svg-icons": "^7.3.1",
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "@zikojs/icons-shared-utils": "workspace:*",
+    "cross-env": "catalog:",
+    "htmlparser2": "catalog:",
+    "rollup": "catalog:"
+  }
+}

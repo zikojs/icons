@@ -1,8 +1,10 @@
 import { writeFileSync, existsSync, mkdirSync } from 'fs'
 import * as FeatherIconsModule from 'feather-icons/dist/icons.json' with { type: 'json' }
 import { parseDocument } from 'htmlparser2'
-import { camel2hyphencase } from './utils/index.js'
-import { nestedChildren2component } from '@zikojs/icons-shared-utils'
+import { 
+  camel2hyphencase,
+  nestedChildren2component
+ } from '@zikojs/icons-shared-utils'
 
 const FeatherIcons = FeatherIconsModule.default
 
