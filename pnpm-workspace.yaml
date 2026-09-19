@@ -2,10 +2,14 @@ packages:
   - "packages/*"
   - "demo/"
 
+allowBuilds:
+  core-js: false
+
 # Define a catalog of version ranges.
 catalog:
   ziko: latest
   zextra: latest
+  htmlparser2: latest
   vite: ^8.2.2
   "@rollup/plugin-commonjs": "^29.0.3"
   "@rollup/plugin-node-resolve": "^16.0.3"

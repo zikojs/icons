@@ -1,2 +1,4 @@
 node_modules/
 dist/
+# **/generated-src/icons
+**/generated-src/**/*.js

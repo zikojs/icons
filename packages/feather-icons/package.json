@@ -1,0 +1,54 @@
+{
+  "name": "@zikojs/feather-icons",
+  "version": "0.1.0",
+  "description": "Lucide Icons for ZikoJs",
+  "keywords": [
+    "zikojs",
+    "feather-icons",
+    "icons",
+    "svg"
+  ],
+  "files": [
+    "generated-src",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./generated-src/index.js",
+    "./*": "./generated-src/icons/*.js"
+  },
+  "homepage": "https://github.com/zikojs/icons#readme",
+  "bugs": {
+    "url": "https://github.com/zikojs/icons/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zikojs/icons.git",
+    "directory": "packages/feather-icons"
+  },
+  "license": "MIT",
+  "author": "zakaria elalaoui",
+  "type": "module",
+  "main": "./generated-src/index.js",
+  "module": "./generated-src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:icons": "node ./scripts/generate.js"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2",
+    "ziko": "catalog:"
+  },
+  "devDependencies": {
+    "@zikojs/icons-shared-utils": "workspace:*",
+    "htmlparser2": "catalog:",
+    "@rollup/plugin-commonjs": "catalog:",
+    "@rollup/plugin-node-resolve": "catalog:",
+    "@rollup/plugin-terser": "catalog:",
+    "cross-env": "catalog:",
+    "rollup": "catalog:"
+  }
+}
