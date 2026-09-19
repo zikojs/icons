@@ -4,8 +4,8 @@
 // import './mind-elixir.js'
 import './lucide.js'
 
-import { Btc } from '@zikojs/fa/Btc'
-import { _500px } from '@zikojs/fa/_500px'
+import  Btc  from '@zikojs/fa/brands/Btc'
+import { AddressBook } from '@zikojs/fa/regular/AddressBook'
 
-Btc().mount(document.body)
-_500px().mount(document.body)
+Btc({fill :"orange"}).mount(document.body)
+AddressBook().mount(document.body)

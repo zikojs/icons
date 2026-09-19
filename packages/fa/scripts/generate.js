@@ -7,23 +7,50 @@ import {
   nestedChildren2component
 } from '@zikojs/icons-shared-utils'
 
-const Icons = {
-  ...fas,
-  ...far,
-  ...fab
+const PACKS = [
+  {
+    name: 'solid',
+    prefix: 'fas',
+    icons: fas
+  },
+  {
+    name: 'regular',
+    prefix: 'far',
+    icons: far
+  },
+  {
+    name: 'brands',
+    prefix: 'fab',
+    icons: fab
+  }
+]
+
+const normalizeIconName = name => {
+  name = String(name)
+
+  let formatted = name.replace(
+    /(^|-)(\w)/g,
+    (_, __, c) => c.toUpperCase()
+  )
+
+  if (/^\d/.test(formatted)) {
+    formatted = `_${formatted}`
+  }
+
+  return formatted
 }
 
 const defaultProps = (IconName, width, height) => JSON.stringify(
   {
     viewBox: `0 0 ${width} ${height}`,
-    fill: "currentColor",
+    fill: 'currentColor',
     width: 24,
     height: 24,
-    "aria-label": camel2hyphencase(IconName)
+    'aria-label': camel2hyphencase(IconName)
   },
   null,
   9
-).replace(/\n\}/, '\n    }')
+).replace(/\n\}/, '\n        }')
 
 const createIconComponent = (
   IconName,
@@ -52,8 +79,8 @@ export default ${IconName};
 `.trimStart()
 }
 
-function generate() {
-  const iconsDir = './generated-src/icons'
+const generatePack = ({ name, icons }) => {
+  const iconsDir = `./generated-src/icons/${name}`
 
   if (!existsSync(iconsDir)) {
     mkdirSync(iconsDir, { recursive: true })
@@ -61,7 +88,7 @@ function generate() {
 
   const _exports = new Set()
 
-  for (const [key, icon] of Object.entries(Icons)) {
+  for (const [, icon] of Object.entries(icons)) {
     if (!icon?.icon || !icon?.iconName) continue
 
     const [
@@ -72,25 +99,15 @@ function generate() {
       pathData
     ] = icon.icon
 
-    // 1. Convert to camelCase (e.g., "360-degrees" -> "360Degrees")
-    let IconName = icon.iconName.replace(
-      /(^|-)(\w)/g,
-      (_, __, c) => c.toUpperCase()
-    )
-
-    // 2. Prefix with '_' if it starts with a number
-    if (/^\d/.test(IconName)) {
-      IconName = `_${IconName}`
-    }
+    const IconName = normalizeIconName(icon.iconName)
 
     const contents = Array.isArray(pathData)
       ? pathData.map(d => [
           'path',
-          { d },
-          []
+          { d }
         ])
       : [
-          ['path', { d: pathData }, []]
+          ['path', { d: pathData }]
         ]
 
     const result = nestedChildren2component(contents)
@@ -102,7 +119,7 @@ function generate() {
     const children = items.join(',\n\t')
 
     _exports.add(
-      `export { ${IconName} } from './icons/${IconName}.js'`
+      `export { ${IconName} } from './icons/${name}/${IconName}.js'`
     )
 
     writeFileSync(
@@ -118,9 +135,21 @@ function generate() {
   }
 
   writeFileSync(
-    './generated-src/index.js',
+    `./generated-src/${name}.js`,
     [..._exports].join('\n')
   )
+}
+
+const generate = () => {
+  if (!existsSync('./generated-src')) {
+    mkdirSync('./generated-src', {
+      recursive: true
+    })
+  }
+
+  for (const pack of PACKS) {
+    generatePack(pack)
+  }
 }
 
 generate()
