@@ -1,7 +1,8 @@
 {
-  "name": "@zikojs/lucide",
-  "version": "1.1.0",
-  "description": "Lucide Icons for ZikoJs",
+  "name": "@zikojs/icons-shared-utils",
+  "version": "0.1.0",
+  "description": "",
+  "private": "true",
   "keywords": [
     "zikojs",
     "lucide",
@@ -9,7 +10,7 @@
     "svg"
   ],
   "files": [
-    "generated-src",
+    "src",
     "package.json",
     "README.md"
   ],
@@ -17,8 +18,7 @@
     "access": "public"
   },
   "exports": {
-    ".": "./generated-src/index.js",
-    "./*": "./generated-src/icons/*.js"
+    ".": "./src/index.js"
   },
   "homepage": "https://github.com/zikojs/icons#readme",
   "bugs": {
@@ -39,15 +39,6 @@
     "build:icons": "node ./scripts/generate.js"
   },
   "dependencies": {
-    "lucide": "^1.30.0",
     "ziko": "catalog:"
-  },
-  "devDependencies": {
-    "@zikojs/icons-shared-utils": "workspace:*",
-    "@rollup/plugin-commonjs": "catalog:",
-    "@rollup/plugin-node-resolve": "catalog:",
-    "@rollup/plugin-terser": "catalog:",
-    "cross-env": "catalog:",
-    "rollup": "catalog:"
   }
 }
