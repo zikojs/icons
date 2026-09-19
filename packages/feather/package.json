@@ -1,10 +1,10 @@
 {
-  "name": "@zikojs/feather-icons",
+  "name": "@zikojs/feather",
   "version": "0.1.0",
-  "description": "Lucide Icons for ZikoJs",
+  "description": "Feather Icons for ZikoJs",
   "keywords": [
     "zikojs",
-    "feather-icons",
+    "feather",
     "icons",
     "svg"
   ],
@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zikojs/icons.git",
-    "directory": "packages/feather-icons"
+    "directory": "packages/feather"
   },
   "license": "MIT",
   "author": "zakaria elalaoui",
