@@ -10,5 +10,8 @@
   "keywords": [],
   "author": "zakaria elalaoui",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "ziko": "2.0.0-beta.15.1"
+  }
 }

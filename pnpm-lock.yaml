@@ -33,16 +33,20 @@ catalogs:
 
 importers:
 
-  .: {}
+  .:
+    dependencies:
+      ziko:
+        specifier: 2.0.0-beta.15.1
+        version: 2.0.0-beta.15.1
 
   demo:
     dependencies:
       '@zikojs/fa':
         specifier: workspace:*
         version: link:../packages/fa
-      '@zikojs/feather':
+      '@zikojs/feather-icons':
         specifier: workspace:*
-        version: link:../packages/feather
+        version: link:../packages/feather-icons
       '@zikojs/lucide':
         specifier: workspace:*
         version: link:../packages/lucide
@@ -92,6 +96,37 @@ importers:
         version: 4.63.3
 
   packages/feather:
+    dependencies:
+      feather-icons:
+        specifier: ^4.29.2
+        version: 4.29.2
+      ziko:
+        specifier: 'catalog:'
+        version: 2.0.0-beta.15
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: 'catalog:'
+        version: 29.0.3(rollup@4.63.3)
+      '@rollup/plugin-node-resolve':
+        specifier: 'catalog:'
+        version: 16.0.3(rollup@4.63.3)
+      '@rollup/plugin-terser':
+        specifier: 'catalog:'
+        version: 1.0.0(rollup@4.63.3)
+      '@zikojs/icons-shared-utils':
+        specifier: workspace:*
+        version: link:../icons-shared-utils
+      cross-env:
+        specifier: 'catalog:'
+        version: 10.1.0
+      htmlparser2:
+        specifier: 'catalog:'
+        version: 12.0.0
+      rollup:
+        specifier: 'catalog:'
+        version: 4.63.3
+
+  packages/feather-icons:
     dependencies:
       feather-icons:
         specifier: ^4.29.2
@@ -796,6 +831,9 @@ packages:
   ziko@2.0.0-beta.15:
     resolution: {integrity: sha512-J6XFqnhAVMJpvOLZEvrL7qksyWHXqV8nA2noG54Z0AGbW6KfFIiv2Ndd4u5YBWsFkYjdKeYXe06b2MU0tkcd4A==}
 
+  ziko@2.0.0-beta.15.1:
+    resolution: {integrity: sha512-WYdyQht2yusky497Rrmgike+lNuCpRQzdoGu+mccVZ0iQRhX2boZkHSM3PbcH7l3PSeIm5LelQqlkhZMgL7eCw==}
+
 snapshots:
 
   '@epic-web/invariant@1.0.0': {}
@@ -1270,3 +1308,5 @@ snapshots:
       isexe: 2.0.0
 
   ziko@2.0.0-beta.15: {}
+
+  ziko@2.0.0-beta.15.1: {}

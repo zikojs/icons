@@ -15,6 +15,6 @@
     "ziko": "catalog:",
     "@zikojs/lucide": "workspace:*",
     "@zikojs/fa": "workspace:*",
-    "@zikojs/feather": "workspace:*"
+    "@zikojs/feather-icons": "workspace:*"
   }
 }
