@@ -12,9 +12,9 @@
     "vite": "catalog:"
   },
   "dependencies": {
-    "ziko": "catalog:",
-    "@zikojs/lucide": "workspace:*",
     "@zikojs/fa": "workspace:*",
-    "@zikojs/feather-icons": "workspace:*"
+    "@zikojs/feather-icons": "workspace:*",
+    "@zikojs/lucide": "workspace:*",
+    "ziko": "2.0.0-rc.12"
   }
 }

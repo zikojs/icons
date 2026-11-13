@@ -1,0 +1,37 @@
+name: Publish Icons packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "npm dist-tag"
+        required: true
+        default: latest
+        type: choice
+        options: [latest, next, beta]
+  push:
+    tags:
+      - "icons-v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-icons
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: zikojs/workflow@v1
+        with:
+          tag-prefix: icons-v
+          dist-tag: ${{ inputs.tag }}   # empty on tag push, so auto-detected
+          npm-token: ${{ secrets.NPM_TOKEN }}

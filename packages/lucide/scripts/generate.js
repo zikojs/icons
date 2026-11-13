@@ -33,7 +33,8 @@ const createIconComponent = (IconName, items, tagNames) => {
   return `
 import { tags } from 'ziko/dom';
 
-const { svg, i, ${tagNames} } = tags;
+const { i } = tags;
+const { svg, ${tagNames} } = tags.svg;
 
 export const ${IconName} = (props) => i(
   svg(

@@ -1,17 +1,21 @@
 {
   "name": "icons",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:lucide-icons" : "cd packages/lucide && pnpm build:icons" ,
+    "build:fa-icons" : "cd packages/fa && pnpm build:icons", 
+    "build:feather-icons" : "cd packages/feather-icons && pnpm build:icons",
+    "build:icons" : "pnpm build:lucide-icons && pnpm build:fa-icons && pnpm build:feather-icons" 
   },
   "keywords": [],
   "author": "zakaria elalaoui",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "ziko": "2.0.0-beta.15.1"
+    "ziko": "2.0.0-rc.12"
   }
 }

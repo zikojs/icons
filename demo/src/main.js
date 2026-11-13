@@ -7,5 +7,5 @@ import './lucide.js'
 import  Btc  from '@zikojs/fa/brands/Btc'
 import { AddressBook } from '@zikojs/fa/regular/AddressBook'
 
-Btc({fill :"orange"}).mount(document.body)
+globalThis.btc = Btc({fill :"orange"}).mount(document.body)
 AddressBook().mount(document.body)
