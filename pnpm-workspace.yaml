@@ -17,3 +17,5 @@ catalog:
   "cross-env": "^10.1.0"
   "rollup": "^4.63.1"
 
+minimumReleaseAgeExclude:
+  - ziko@2.0.0-rc.13

@@ -29,15 +29,15 @@ catalogs:
       version: 8.3.8
     ziko:
       specifier: latest
-      version: 2.0.0-rc.12
+      version: 2.0.0-rc.12.1
 
 importers:
 
   .:
     dependencies:
       ziko:
-        specifier: 2.0.0-rc.12
-        version: 2.0.0-rc.12
+        specifier: 2.0.0-rc.13
+        version: 2.0.0-rc.13
 
   demo:
     dependencies:
@@ -62,7 +62,7 @@ importers:
     dependencies:
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-rc.12
+        version: 2.0.0-rc.12.1
     devDependencies:
       '@fortawesome/free-brands-svg-icons':
         specifier: ^7.3.1
@@ -102,7 +102,7 @@ importers:
         version: 4.29.2
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-rc.12
+        version: 2.0.0-rc.12.1
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -130,7 +130,7 @@ importers:
     dependencies:
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-rc.12
+        version: 2.0.0-rc.12.1
 
   packages/lucide:
     dependencies:
@@ -139,7 +139,7 @@ importers:
         version: 1.72.0
       ziko:
         specifier: 'catalog:'
-        version: 2.0.0-rc.12
+        version: 2.0.0-rc.12.1
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 'catalog:'
@@ -825,6 +825,12 @@ packages:
   ziko@2.0.0-rc.12:
     resolution: {integrity: sha512-gFM+Mfj7VM/eCDl2oM+4pzVbs0p73FypZ5ihXmSP7ULjWqwHX9EvJQ4zfUB6pW6EDP3qLbMPUGGoo7egw8ew/w==}
 
+  ziko@2.0.0-rc.12.1:
+    resolution: {integrity: sha512-ajzh3RXraZIqRcQpyc3QX0VCHhg+ntSxHs666AXpP2GwGVGFkAB+q4l6bF5wPRexR9sNDh3c9hC6/b9pa+oBwQ==}
+
+  ziko@2.0.0-rc.13:
+    resolution: {integrity: sha512-IZZdA7pEh2k16GAq215+olARRSHPuPdPBVQkT9a66uKFeMbXmc+cGXYZf0de+v4pdVzEVJ+zKjcsCg09OzyedQ==}
+
 snapshots:
 
   '@emnapi/core@2.0.0-beta.2':
@@ -1338,3 +1344,7 @@ snapshots:
       isexe: 2.0.0
 
   ziko@2.0.0-rc.12: {}
+
+  ziko@2.0.0-rc.12.1: {}
+
+  ziko@2.0.0-rc.13: {}
