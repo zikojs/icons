@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: zikojs/workflow@v1
+      - uses: zikojs/workflow@v1.1.0
         with:
           tag-prefix: icons-v
           dist-tag: ${{ inputs.tag }}   # empty on tag push, so auto-detected
